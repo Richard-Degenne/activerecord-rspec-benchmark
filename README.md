@@ -1,24 +1,31 @@
-# README
+# ActiveRecord RSpec benchmark
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This dummy project gives a glimpse into the performance discrepencies between
+different methods of testing ActiveRecord models.
 
-Things you may want to cover:
+## Usage
 
-* Ruby version
+### Prerequisites
 
-* System dependencies
+- Ruby 3
+- Docker Compose
 
-* Configuration
+### Setup
 
-* Database creation
+```bash
+bundle install
+docker-compose up -d
+bundle exec dotenv rails db:setup:all
+```
 
-* Database initialization
+### `#valid?` tests
 
-* How to run the test suite
+```bash
+bundle exec dotenv rspec spec/models/user_spec.rb[1:1]
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+### `#save!` tests
 
-* Deployment instructions
-
-* ...
+```bash
+bundle exec dotenv rspec spec/models/user_spec.rb[1:2]
+```
